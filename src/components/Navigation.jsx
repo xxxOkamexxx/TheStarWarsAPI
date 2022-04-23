@@ -8,7 +8,7 @@ const Navigation = () => {
     
     <Navbar expand="md">
         <Container>
-            <Navbar.Brand as={Link} to="/">
+            <Navbar.Brand className='title' as={Link} to="/">
                 Star Wars Encyclopedia
             </Navbar.Brand>
 
