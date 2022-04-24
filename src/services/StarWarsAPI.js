@@ -6,29 +6,26 @@ import axios from "axios"
 const BASE_URL = "https://swapi.dev/api"
 
 /**
- * Get Films
- * 
- * @param {string} query 
+ * Get All Films
  */
-const getFilms = async query => {
-    const response = await axios.get(`${BASE_URL}/films/search?query=${query}`)
+const getFilms = async () => {
+    const res = await axios.get(`${BASE_URL}/films`)
 
-    return response.data
+    return res.data
 }
 
 /**
- * Get People
- * 
- * @param {string} query  
+ * Get All People  
  */
-const getPeople = async query => {
-    const response = await axios.get(`${BASE_URL}/people/search?query=${query}`)
+const getPeople = async () => {
+    const res = await axios.get(`${BASE_URL}/people`)
 
-    return response.data
+    return res.data
 }
 
 
-export {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default{
     getFilms,
     getPeople,
 }
