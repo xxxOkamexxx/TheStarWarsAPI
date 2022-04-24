@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import ListGroup from 'react-bootstrap/ListGroup'
 
 
-const SearchFilms = () => {  
+const FilmsPage = () => {  
   const [resource, setResourse] = useState()
   const [filmData, setFilmData] = useState()
 
@@ -57,4 +57,4 @@ const SearchFilms = () => {
   )
 }
 
-export default SearchFilms
+export default FilmsPage

@@ -3,7 +3,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
 
 
-function SearchPeople() {
+function Peoplepage() {
   
 
   return (
@@ -27,4 +27,4 @@ function SearchPeople() {
   )
 }
 
-export default SearchPeople
+export default Peoplepage
