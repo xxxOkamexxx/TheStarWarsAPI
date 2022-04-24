@@ -9,7 +9,7 @@ function HomePage() {
         <Container className='home-contents'> 
             <h1 className='title'>Star Wars Encyclopedia</h1>          
             <div className='link-items'>
-                <p>FILM</p>
+                <p>FILMS</p>
                 <p>PEOPLE</p>
             </div>
         </Container>
