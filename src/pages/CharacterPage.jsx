@@ -7,13 +7,16 @@ import { useParams } from 'react-router-dom'
 
 function CharacterPage() {
     const [character, setCharacter] = useState()
+    const [loading, setLoading] = useState(false)
     const { id } = useParams()
   
     const getCharacter = async (id) => {
-    const data = await StarWarsAPI.getCharacter(id)
+      setLoading(true)
+      const data = await StarWarsAPI.getCharacter(id)
 
-    setCharacter(data)
-  }
+      setCharacter(data)
+      setLoading(false)
+    }
   
   useEffect (() => {
     getCharacter(id)     
@@ -25,6 +28,8 @@ function CharacterPage() {
         <div>{character.name}</div>
       
     )}
+
+    {loading && (<div className="mt-4">Loading...</div>)}
 </div>
   )
 }

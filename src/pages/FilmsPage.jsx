@@ -9,10 +9,15 @@ import Card from 'react-bootstrap/Card'
 
 const FilmsPage = () => {  
   const [films, setFilms] = useState([])
+  const [loading, setLoading] = useState(false)
   
   const getAllFilms = async () => {
+    setLoading(true)
+
     const data = await StarWarsAPI.getFilms()
     setFilms(data)
+
+    setLoading(false)
   }
 
   useEffect (() => {
@@ -49,7 +54,7 @@ const FilmsPage = () => {
           )} 
 
           </div>                 
-
+          {loading && (<div className="mt-4">Loading...</div>)}
           <div className="search-result-row mt-4">
             <div className="prev">
                 <Button className='button'>Previous Page</Button>

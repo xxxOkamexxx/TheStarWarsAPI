@@ -8,10 +8,14 @@ import Card from 'react-bootstrap/Card'
 
 const Peoplepage = () => {
   const [people, setPeople] = useState([])
+  const [loading, setLoading] = useState(false)
 
   const getPeople = async () => {
+    setLoading(true)
     const data = await StarWarsAPI.getPeople()
     setPeople(data)
+    
+    setLoading(false)
   }
 
   useEffect (() => {
@@ -35,7 +39,7 @@ const Peoplepage = () => {
           )} 
 
           </div>                 
-
+          {loading && (<div className="mt-4">Loading...</div>)}
           <div className="search-result-row mt-4">
             <div className="prev">
                 <Button className='button'>Previous Page</Button>

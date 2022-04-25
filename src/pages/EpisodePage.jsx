@@ -7,13 +7,17 @@ import { useParams } from 'react-router-dom'
 
 function EpisodePage() {
     const [episode, setEpisode] = useState()
+    const [loading, setLoading] = useState(false)
     const { id } = useParams()
   
     const getEpisode = async (id) => {
-    const data = await StarWarsAPI.getEpisode(id)
+      setLoading(true)
 
-    setEpisode(data)
-  }
+      const data = await StarWarsAPI.getEpisode(id)
+
+      setEpisode(data)
+      setLoading(false)
+    }
   
   useEffect (() => {
     getEpisode(id)     
@@ -23,8 +27,10 @@ function EpisodePage() {
     <div className='d-flex flex-column align-items-center'>
         {episode && (
           <div>{episode.title}</div>
-          
+                  
         )}
+
+        {loading && (<div className="mt-4">Loading...</div>)}
     </div>
     
   )
