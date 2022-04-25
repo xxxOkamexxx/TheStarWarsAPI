@@ -1,6 +1,13 @@
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 
+/**
+ * 　<< 課題 >>
+ * 　ページ数の値をどのように入力するか？
+ *　　(films/people の切り替え function)
+ * 
+ */
+
 const PageButtons = () => {
   return (
     <Container className="search-result-row mt-4">

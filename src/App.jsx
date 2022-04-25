@@ -4,7 +4,9 @@ import { Routes, Route } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import HomePage from './pages/HomePage'
 import FilmsPage from './pages/FilmsPage'
+import EpisodePage from './pages/EpisodePage'
 import PeoplePage from './pages/PeoplePage'
+import CharacterPage from './pages/CharacterPage'
 import NotFound from './pages/NotFound'
 
 // style
@@ -22,7 +24,9 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/films" element={<FilmsPage />} />
+          <Route path="/films/:id" element={<EpisodePage />} />
           <Route path="/people" element={<PeoplePage />} />
+          <Route path='/people/:id' element={<CharacterPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Container>
