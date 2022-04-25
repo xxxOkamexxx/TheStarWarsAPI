@@ -22,7 +22,7 @@ const FilmsPage = () => {
   return (
     <>
       <div className="search-result-col mt-4">
-      <h2 className='title'>Films</h2>
+        <h2 className='title'>Films</h2>
         {films.results && films.results.map(film => 
               <ListGroup.Item>
                 {film.title}
