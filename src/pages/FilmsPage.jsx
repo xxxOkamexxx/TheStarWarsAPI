@@ -9,7 +9,6 @@ import ListGroup from 'react-bootstrap/ListGroup'
 const FilmsPage = () => {  
   const [films, setFilms] = useState([])
   
-
   const getFilms = async () => {
     const data = await StarWarsAPI.getFilms()
 
@@ -23,18 +22,12 @@ const FilmsPage = () => {
   return (
     <>
       <div className="search-result-col mt-4">
-        <h2 className='title'>{films}</h2>
-                
-          <ListGroup className="filmslist">
-            {films.map(film => 
-              <ListGroup.Item
-                action
-                key={film.episode_id}
-              >
+      <h2 className='title'>Films</h2>
+        {films.results && films.results.map(film => 
+              <ListGroup.Item>
                 {film.title}
               </ListGroup.Item>
             )}           
-          </ListGroup>
             
   
         <div className="search-result-row mt-4">

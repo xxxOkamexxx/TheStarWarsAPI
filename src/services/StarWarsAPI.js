@@ -15,10 +15,27 @@ const getFilms = async () => {
 }
 
 /**
+ * Get a specific Film 
+ */
+ const getAEpisode = async (episode_id) => {
+    const res = await axios.get(`${BASE_URL}/films/${episode_id}`)
+
+    return res.data
+}
+
+/**
  * Get All People  
  */
 const getPeople = async () => {
     const res = await axios.get(`${BASE_URL}/people`)
+
+    return res.data
+}
+/**
+ * Get a specific character  
+ */
+const getACharacter = async (id) => {
+    const res = await axios.get(`${BASE_URL}/people/${id}`)
 
     return res.data
 }
@@ -28,4 +45,6 @@ const getPeople = async () => {
 export default{
     getFilms,
     getPeople,
+    getAEpisode,
+    getACharacter,
 }
