@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react'
 
 import StarWarsAPI from '../services/StarWarsAPI'
+import PageButtons from '../components/PageButtons'
 
-import Button from 'react-bootstrap/Button'
-import ListGroup from 'react-bootstrap/ListGroup'
+import Card from 'react-bootstrap/Card'
 
 
 const FilmsPage = () => {  
@@ -18,29 +18,36 @@ const FilmsPage = () => {
   useEffect (() => {
     getFilms()     
   },[])
-  
+
+  // Loading...
+
   return (
     <>
-      <div className="search-result-col mt-4">
+      <div className='d-flex flex-column align-items-center'>
         <h2 className='title'>Films</h2>
-        {films.results && films.results.map(film => 
-              <ListGroup.Item>
-                {film.title}
-              </ListGroup.Item>
-            )}           
-            
-  
-        <div className="search-result-row mt-4">
-						<div className="prev">
-							<Button className='button'>Previous Page</Button>
-						</div>
-						<div className="page">PAGE</div>
-						<div className="next">
-							<Button className='button'>Next Page</Button>
-						</div>
-					</div>
-      </div>
-        
+
+          <div className='d-flex flex-column gap-3'>
+            {films.results && films.results.map(film => 
+              <Card style={{width:'60rem'}} className="p-3">
+                <Card.Title className='list-title'>
+                  {film.title}
+                </Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                  <strong>Episode</strong> {film.episode_id}
+                </Card.Subtitle>
+                <Card.Text>
+                  <strong>Released:</strong>{film.release_date}
+                </Card.Text>
+              </Card>
+          )} 
+
+          </div>                 
+
+          <div>
+            <PageButtons />
+          </div>
+
+      </div>       
     </>
   )
 }
