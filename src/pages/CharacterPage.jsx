@@ -43,7 +43,10 @@ function CharacterPage() {
 
               <p>Films:</p>              
               {character.films && character.films.map(film => 
-                <ListGroup.Item>
+                <ListGroup.Item
+                  as={Link}
+                  to={`/films/${getIdFromUrl(film)}`}
+                >
                   {`Film ${getIdFromUrl(film)}`}
                 </ListGroup.Item>
               )}

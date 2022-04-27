@@ -39,7 +39,10 @@ function EpisodePage() {
               <p>Release Date: {episode.release_date}</p>
               <p>Characters:</p>              
               {episode.characters && episode.characters.map(character => 
-                <ListGroup.Item>
+                <ListGroup.Item
+                  as={Link}
+                  to={`/people/${getIdFromUrl(character)}`}
+                >
                   {`Character ${getIdFromUrl(character)}`}
                 </ListGroup.Item>
               )}

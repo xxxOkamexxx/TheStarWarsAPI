@@ -31,22 +31,25 @@ const Peoplepage = () => {
        <div className='d-flex flex-column align-items-center'>
         <h2 className='title'>People</h2>
         
-          <div className='d-flex flex-wrap gap-3 justify-content-center'>
+          <div className='d-flex flex-column gap-3'>
             {people.results && people.results.map(person => 
-              <Card     
-                className="p-3 d-flex flex-col col-3 " 
+              <Card
+                style={{width:'70vw'}}     
+                className="d-flex flex-row justify-content-between"
                 key={person.name}
               >
-                <div>
+                <Card.Body className='col-4'>
                   <Card.Title className='list-title'>
                     {person.name}
                   </Card.Title>
+                </Card.Body>
+
+                <Card.Body className='col-4'>
                   <Card.Text>Gender: {person.gender}</Card.Text>
                   <Card.Text>Born: {person.birth_year}</Card.Text>
-                </div>
-                
-
-                <Card.Body>
+                </Card.Body>  
+ 
+                <Card.Body className='align-self-end'>
                   <Button 
                     className='button'
                     as={Link}
