@@ -57,15 +57,28 @@ const FilmsPage = () => {
                   >
                     Read more...
                   </Button>
-                </Card.Body>
-
-                
+                </Card.Body>               
               </Card>
           )} 
 
           </div>                 
           
           {loading && (<div className="mt-4">Loading...</div>)}
+
+          {/**
+           * 時間があれば Buttonファンクションファイルを作る 
+           * peoplePageも同様
+           */}
+
+          <div className="search-result-row mt-4">
+            <div className="prev">
+                <Button className='button'>Previous Page</Button>
+            </div>
+            <div className="page">PAGE</div>
+            <div className="next">
+                <Button className='button'>Next Page</Button>
+            </div>
+          </div>
 
       </div>       
     </>

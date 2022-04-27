@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import StarWarsAPI from '../services/StarWarsAPI'
@@ -30,20 +30,25 @@ const Peoplepage = () => {
     <>
        <div className='d-flex flex-column align-items-center'>
         <h2 className='title'>People</h2>
-
-          <div className='d-flex flex-column gap-3'>
+        
+          <div className='d-flex flex-wrap gap-3 justify-content-center'>
             {people.results && people.results.map(person => 
-              <Card  
-                style={{width:'70vw'}}    
-                className="p-3" 
+              <Card     
+                className="p-3 d-flex flex-col col-3 " 
                 key={person.name}
               >
-                <Card.Title className='list-title'>
-                  {person.name}
-                </Card.Title>
-                <Card.Body className=''>
+                <div>
+                  <Card.Title className='list-title'>
+                    {person.name}
+                  </Card.Title>
+                  <Card.Text>Gender: {person.gender}</Card.Text>
+                  <Card.Text>Born: {person.birth_year}</Card.Text>
+                </div>
+                
+
+                <Card.Body>
                   <Button 
-                    className='button end-0'
+                    className='button'
                     as={Link}
                     to={`/people/${getIdFromUrl(person.url)}`}
                   >
@@ -53,8 +58,10 @@ const Peoplepage = () => {
               </Card>
           )} 
 
-          </div>                 
+          </div>  
+                         
           {loading && (<div className="mt-4">Loading...</div>)}
+
           <div className="search-result-row mt-4">
             <div className="prev">
                 <Button className='button'>Previous Page</Button>
