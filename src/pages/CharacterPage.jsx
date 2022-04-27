@@ -31,6 +31,9 @@ function CharacterPage() {
 
     {loading && (<div className="mt-4">Loading...</div>)}
 </div>
+
+// "Back button?"
+
   )
 }
 
