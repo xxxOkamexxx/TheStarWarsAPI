@@ -30,7 +30,7 @@ function EpisodePage() {
     <div className='d-flex flex-column align-items-center'>
         {episode && (
           
-          <ListGroup style={{width:'70vw'}} className="p-3" key={episode.index}>
+          <ListGroup style={{width:'70vw'}} className="p-3" key={episode.url}>
             <ListGroup.Item>
               <h3 className='list-title'>{episode.title}</h3>
               <p>Episode: {episode.episode_id}</p>

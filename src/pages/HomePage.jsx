@@ -1,5 +1,6 @@
+import HomeImage from '../assets/bb.jpg'
+import Image from 'react-bootstrap/Image'
 import Container from 'react-bootstrap/Container'
-import 'bootstrap/dist/css/bootstrap.css'
 
 
 function HomePage() {
@@ -7,7 +8,7 @@ function HomePage() {
     <>              
         <Container className='home-contents'> 
             <h1 className='title'>Star Wars Encyclopedia</h1>
-            <img src="./assets/bb.jpg" alt="" />                      
+            <Image src={HomeImage} fluid />                    
         </Container>
     </>
   )

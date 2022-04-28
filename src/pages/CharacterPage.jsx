@@ -30,7 +30,7 @@ function CharacterPage() {
     <div className='d-flex flex-column align-items-center'>
         {character && (
           
-          <ListGroup style={{width:'70vw'}} className="p-3" key={character.index}>
+          <ListGroup style={{width:'70vw'}} className="p-3" key={character.name}>
             <ListGroup.Item>
               <h3 className='list-title'>{character.name}</h3>
 
