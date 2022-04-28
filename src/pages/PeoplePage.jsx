@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react'
+/* eslint-disable array-callback-return */
+/* eslint-disable eqeqeq */
+import { useState, useEffect, useRef} from 'react'
 import { Link } from 'react-router-dom'
 
 import StarWarsAPI from '../services/StarWarsAPI'
@@ -6,19 +8,23 @@ import { getIdFromUrl } from '../helpers/index'
 
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
 
 
 const Peoplepage = () => {
   const [people, setPeople] = useState([])
   const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(1)
-
+  const [searchCharacter, setSearchCharacter] = useState('')
+  const searchInputRef = useRef()
+    
   const getPeople = async (page) => {
     setLoading(true)
 
-    const data = await StarWarsAPI.getPeople(page)
+    const data = await StarWarsAPI.getPeople(page)   
     setPeople(data)
-    
+
     setLoading(false)
   }
 
@@ -32,17 +38,41 @@ const Peoplepage = () => {
     <>
        <div className='d-flex flex-column align-items-center'>
         <h2 className='title'>People</h2>
-
-        {loading && (<div className="mt-4">Loading...</div>)}
         
+        <InputGroup className="mb-3" style={{width:'70vw'}}>
+          <FormControl
+              onChange={e => setSearchCharacter(e.target.value)}
+              placeholder="Search..."
+              ref={searchInputRef}
+              required
+              type="text"
+              value={searchCharacter}
+          />
+          <Button 
+            className='button'
+          >
+             Button
+          </Button>
+        </InputGroup>
+
+        
+        {loading && (<div className="mt-4">Loading...</div>)}
+       
         {people.results && (
           <div className='d-flex flex-column gap-3'>
-            {people.results && people.results.map(person => 
-              <Card
-                style={{width:'70vw'}}     
-                className="d-flex flex-row justify-content-between"
-                key={person.name}
-              >
+            {people && people.results.filter(hit => {
+              if(searchCharacter == ""){
+                return hit
+              } else if (hit.name.toLowerCase().includes(searchCharacter.toLocaleLowerCase())){ 
+                return hit
+              }}).map((person, key) => {
+              return (
+                
+                <Card
+                  style={{width:'70vw'}}     
+                  className="d-flex flex-row justify-content-between"
+                  key={key}
+                >
                 <Card.Body className='col-4'>
                   <Card.Title className='list-title'>
                     {person.name}
@@ -64,8 +94,13 @@ const Peoplepage = () => {
                   </Button>
                 </Card.Body>
               </Card>
-            )} 
 
+              )
+              })
+
+            
+            }
+              
               <div className="result-row mt-4">
                     <div className="prev">
                         <Button 
