@@ -45,3 +45,12 @@
 	flex-direction: row;
 	justify-content: space-between;
 }
+
+.bgImage{
+	height: 70vh;
+	background-image: url(./assets/notFound.jpg);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}

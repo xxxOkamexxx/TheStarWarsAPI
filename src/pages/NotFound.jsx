@@ -1,7 +1,18 @@
+import GoBackButton from '../context/GoBackButton'
+
 const NotFound = () => {
+	
 	return (
 		<>
-			<h2 className="title">Sorry, that page could not be found</h2>
+			<div className="bgImage d-flex flex-column justify-content-between p-3">
+				<h2 className="title">Sorry, that page could not be found</h2>
+
+				<GoBackButton />
+
+			</div>
+			
+		
+			
 		</>
 	)
 }

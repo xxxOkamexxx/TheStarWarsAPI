@@ -1,19 +1,17 @@
 import { useState, useEffect } from 'react'
 import{ Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
 
 import StarWarsAPI from '../services/StarWarsAPI'
 import { getIdFromUrl } from '../helpers/index'
+import GoBackButton from '../context/GoBackButton'
 
 import ListGroup from 'react-bootstrap/ListGroup'
-import Button from 'react-bootstrap/Button'
 
 function EpisodePage() {
     const [episode, setEpisode] = useState()
     const [loading, setLoading] = useState(false)
     const { id } = useParams()
-    const navigate = useNavigate()
   
     const getEpisode = async (id) => {
       setLoading(true)
@@ -32,7 +30,7 @@ function EpisodePage() {
     <div className='d-flex flex-column align-items-center'>
         {episode && (
           
-          <ListGroup style={{width:'70vw'}} className="p-3" >
+          <ListGroup style={{width:'70vw'}} className="p-3" key={episode.index}>
             <ListGroup.Item>
               <h3 className='list-title'>{episode.title}</h3>
               <p>Episode: {episode.episode_id}</p>
@@ -55,12 +53,8 @@ function EpisodePage() {
 
         {loading && (<div className="mt-4">Loading...</div>)}
         
-        <div className='d-flex justify-content-center' onClick={() => navigate(-1)}>
-          <Button className='button'>
-            Back
-          </Button>
-
-        </div>
+        <GoBackButton />
+        
     </div>
 
     // "Back" button?

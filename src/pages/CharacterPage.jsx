@@ -1,19 +1,17 @@
 import {useState, useEffect} from 'react'
 import{ Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
 
 import StarWarsAPI from '../services/StarWarsAPI'
 import { getIdFromUrl } from '../helpers/index'
+import GoBackButton from '../context/GoBackButton'
 
 import ListGroup from 'react-bootstrap/ListGroup'
-import Button from 'react-bootstrap/Button'
 
 function CharacterPage() {
     const [character, setCharacter] = useState()
     const [loading, setLoading] = useState(false)
     const { id } = useParams()
-    const navigate = useNavigate()
   
     const getCharacter = async (id) => {
       setLoading(true)
@@ -32,7 +30,7 @@ function CharacterPage() {
     <div className='d-flex flex-column align-items-center'>
         {character && (
           
-          <ListGroup style={{width:'70vw'}} className="p-3" >
+          <ListGroup style={{width:'70vw'}} className="p-3" key={character.index}>
             <ListGroup.Item>
               <h3 className='list-title'>{character.name}</h3>
 
@@ -58,13 +56,9 @@ function CharacterPage() {
         )}
 
         {loading && (<div className="mt-4">Loading...</div>)}
-        
-        <div className='d-flex justify-content-center'>
-          <Button className='button' onClick={() => navigate(-1)}>
-            Back
-          </Button>
 
-        </div>
+        <GoBackButton />
+        
     </div>
 
   )
