@@ -17,6 +17,11 @@
 	border-color: #fd7e14;
 	background-color: #fd7e14
 }
+
+.button:disabled{
+	border-color: #adb5bd ;
+	background-color: #adb5bd 
+}
 	
 .title{
 	text-align: center;
@@ -34,7 +39,7 @@
 	align-items: center;
 }
 
-.search-result-row{
+.result-row{
 	width: 70vw;
 	display: flex;
 	flex-direction: row;

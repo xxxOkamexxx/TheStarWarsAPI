@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import{ Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import StarWarsAPI from '../services/StarWarsAPI'
 import { getIdFromUrl } from '../helpers/index'
@@ -12,6 +13,7 @@ function EpisodePage() {
     const [episode, setEpisode] = useState()
     const [loading, setLoading] = useState(false)
     const { id } = useParams()
+    const navigate = useNavigate()
   
     const getEpisode = async (id) => {
       setLoading(true)
@@ -53,7 +55,7 @@ function EpisodePage() {
 
         {loading && (<div className="mt-4">Loading...</div>)}
         
-        <div className='d-flex justify-content-center'>
+        <div className='d-flex justify-content-center' onClick={() => navigate(-1)}>
           <Button className='button'>
             Back
           </Button>
