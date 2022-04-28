@@ -4,7 +4,7 @@ const NotFound = () => {
 	
 	return (
 		<>
-			<div className="bgImage d-flex flex-column justify-content-between p-3">
+			<div className="bgImage">
 				<h2 className="title">Sorry, that page could not be found</h2>
 
 				<GoBackButton />

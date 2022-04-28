@@ -46,8 +46,21 @@
 	justify-content: space-between;
 }
 
+.homeImage{
+	margin: 0;
+	padding-left: 0;
+	height: 80vh;
+	background-image: url(./assets/bb.jpg);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
 .bgImage{
-	height: 70vh;
+	margin: 0;
+	padding-left: 0;
+	height: 80vh;
 	background-image: url(./assets/notFound.jpg);
 	background-position: center center;
 	background-repeat: no-repeat;
