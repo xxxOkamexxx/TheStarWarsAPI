@@ -49,7 +49,7 @@
 .homeImage{
 	margin: 0;
 	padding-left: 0;
-	height: 80vh;
+	height: 87vh;
 	background-image: url(./assets/bb.jpg);
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -60,7 +60,7 @@
 .bgImage{
 	margin: 0;
 	padding-left: 0;
-	height: 80vh;
+	height: 87vh;
 	background-image: url(./assets/notFound.jpg);
 	background-position: center center;
 	background-repeat: no-repeat;
