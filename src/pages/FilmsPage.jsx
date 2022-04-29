@@ -37,11 +37,11 @@ const FilmsPage = () => {
 
         {films.results && (
           <div className='d-flex flex-column gap-3'>
-          {films.results && films.results.map(film => 
+          {films.results && films.results.map((film, key) => 
             <Card 
               style={{width:'70vw'}} 
               className="d-flex flex-row justify-content-between" 
-              key={film.episode_id}                
+              key={key}                
             >
               <Card.Body className='col-4'>
                 <Card.Title className='list-title'>
