@@ -16,7 +16,7 @@ const Peoplepage = () => {
   const [people, setPeople] = useState([])
   const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(1)
-  const [searchCharacter, setSearchCharacter] = useState('')
+  const [searchInput, setSearchInput] = useState('')
   const searchInputRef = useRef()
     
   const getPeople = async (page) => {
@@ -41,12 +41,12 @@ const Peoplepage = () => {
         
         <InputGroup className="mb-3" style={{width:'70vw'}}>
           <FormControl
-              onChange={e => setSearchCharacter(e.target.value)}
+              onChange={e => setSearchInput(e.target.value)}
               placeholder="Search..."
               ref={searchInputRef}
               required
               type="text"
-              value={searchCharacter}
+              value={searchInput}
           />
           <Button 
             className='button'
@@ -60,11 +60,11 @@ const Peoplepage = () => {
        
         {people.results && (
           <div className='d-flex flex-column gap-3'>
-            {people && people.results.filter(hit => {
-              if(searchCharacter == ""){
-                return hit
-              } else if (hit.name.toLowerCase().includes(searchCharacter.toLocaleLowerCase())){ 
-                return hit
+            {people && people.results.filter(hits => {
+              if(searchInput == ""){
+                return hits
+              } else if (hits.name.toLowerCase().includes(searchInput.toLocaleLowerCase())){ 
+                return hits
               }}).map((person, key) => {
               return (
                 
@@ -105,7 +105,7 @@ const Peoplepage = () => {
                     <div className="prev">
                         <Button 
                           className='button'
-                          disabled={people.previous === null}
+                          disabled={people.previous === null || loading}
                           onClick={() => setPage(prevValue => prevValue -1)}
                         >
                           Previous Page
@@ -117,7 +117,7 @@ const Peoplepage = () => {
                     <div className="next">
                         <Button 
                           className='button'
-                          disabled={people.next === null}
+                          disabled={people.next === null || loading}
                           onClick={() => setPage(prevValue => prevValue +1)}
                         >
                           Next Page
