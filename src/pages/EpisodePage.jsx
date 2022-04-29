@@ -38,8 +38,9 @@ function EpisodePage() {
               <p>Producer: {episode.producer}</p>
               <p>Release Date: {episode.release_date}</p>
               <p>Characters:</p>              
-              {episode.characters && episode.characters.map(character => 
+              {episode.characters && episode.characters.map((character, key) => 
                 <ListGroup.Item
+                  key={key}
                   as={Link}
                   to={`/people/${getIdFromUrl(character)}`}
                 >
