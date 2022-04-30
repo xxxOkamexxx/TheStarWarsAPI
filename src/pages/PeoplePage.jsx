@@ -2,6 +2,7 @@
 /* eslint-disable eqeqeq */
 import { useState, useEffect, useRef} from 'react'
 import { Link } from 'react-router-dom'
+//import { useSearchParams } from 'react-router-dom'
 
 import StarWarsAPI from '../services/StarWarsAPI'
 import { getIdFromUrl } from '../helpers/index'
@@ -18,40 +19,59 @@ const Peoplepage = () => {
   const [page, setPage] = useState(1)
   const [searchInput, setSearchInput] = useState('')
   const searchInputRef = useRef()
-    
-  const getPeople = async (page) => {
+
+ 
+  const getAllPeople = async (searchQuery, page) => {
     setLoading(true)
 
-    const data = await StarWarsAPI.getPeople(page)   
+    const data = await StarWarsAPI.getPeople(searchQuery, page)       
     setPeople(data)
-
+    
+    console.log('data: ', data)
     setLoading(false)
   }
 
+  const handleSubmit = async e => {
+		e.preventDefault()
+
+		if (!searchInput.length) {
+			return
+		}
+
+		setPage(1)
+		getAllPeople(searchInput, 1)
+	}
+
+
   useEffect (() => {
-    getPeople(page)
+    getAllPeople(page)
 
   },[page])
+  console.log('people: ', people)
 
-  
   return (
     <>
        <div className='d-flex flex-column align-items-center'>
         <h2 className='title'>People</h2>
         
-        <InputGroup className="mb-3" style={{width:'70vw'}}>
+        <InputGroup onSubmit={handleSubmit} className="mb-3" style={{width:'70vw'}}>
           <FormControl
-              onChange={e => setSearchInput(e.target.value)}
+              onChange={e => {
+                setSearchInput(e.target.value)
+                // setPage(1)
+              }}
               placeholder="Search..."
               ref={searchInputRef}
               required
               type="text"
               value={searchInput}
           />
-          <Button 
+          <Button
+            onClick={() => setPage(1) }
+            disabled={!searchInput.length} 
             className='button'
           >
-             Button
+             Search
           </Button>
         </InputGroup>
 
