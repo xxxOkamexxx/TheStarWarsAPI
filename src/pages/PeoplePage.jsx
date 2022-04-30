@@ -2,7 +2,7 @@
 /* eslint-disable eqeqeq */
 import { useState, useEffect, useRef} from 'react'
 import { Link } from 'react-router-dom'
-//import { useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 
 import StarWarsAPI from '../services/StarWarsAPI'
 import { getIdFromUrl } from '../helpers/index'
@@ -12,22 +12,23 @@ import Card from 'react-bootstrap/Card'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 
-
 const Peoplepage = () => {
   const [people, setPeople] = useState([])
   const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(1)
   const [searchInput, setSearchInput] = useState('')
+  const [searchParams, setSearchParams] = useSearchParams()
   const searchInputRef = useRef()
 
- 
-  const getAllPeople = async (searchQuery, page) => {
+  const query = searchParams.get('query')
+
+  const getAllPeople = async (query, page = 1) => {
     setLoading(true)
 
-    const data = await StarWarsAPI.getPeople(searchQuery, page)       
+    const data = await StarWarsAPI.getPeople(query, page)                 
     setPeople(data)
-    
     console.log('data: ', data)
+    console.log('query, page: ',query ,':', page)
     setLoading(false)
   }
 
@@ -39,15 +40,27 @@ const Peoplepage = () => {
 		}
 
 		setPage(1)
-		getAllPeople(searchInput, 1)
+    setSearchParams({query: searchInput})
+		getAllPeople(searchInput)
 	}
 
 
   useEffect (() => {
-    getAllPeople(page)
+    if (!query) {
+			setSearchInput('')
+      getAllPeople(query, page)
+			return
+		}
+    
+    setSearchInput(query)
+    getAllPeople(query, page)
 
-  },[page])
+  },[query, page])
+
+  console.log('searchParams: ', searchParams)
+  console.log('query: ',query )
   console.log('people: ', people)
+
 
   return (
     <>
@@ -56,10 +69,7 @@ const Peoplepage = () => {
         
         <InputGroup onSubmit={handleSubmit} className="mb-3" style={{width:'70vw'}}>
           <FormControl
-              onChange={e => {
-                setSearchInput(e.target.value)
-                // setPage(1)
-              }}
+              onChange={e => setSearchInput(e.target.value)}
               placeholder="Search..."
               ref={searchInputRef}
               required
@@ -67,7 +77,6 @@ const Peoplepage = () => {
               value={searchInput}
           />
           <Button
-            onClick={() => setPage(1) }
             disabled={!searchInput.length} 
             className='button'
           >

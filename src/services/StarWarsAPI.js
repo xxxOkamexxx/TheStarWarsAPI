@@ -3,55 +3,45 @@
  */
 import axios from "axios"
 
-const BASE_URL = "https://swapi.dev/api"
+axios.defaults.baseURL = "https://swapi.dev/api"
+
+const get = async (endpoint) => {
+	const response = await axios.get(endpoint)
+	return response.data
+}
+
 
 /**
  * Get All Films
  */
-const getFilms = async (page) => {
-    const res = await axios.get(`${BASE_URL}/films/?page=${page}`)
-
-    return res.data
+const getFilms = async () => {
+    return get(`/films`)   
 }
 
 /**
  * Get a specific Film 
  */
  const getEpisode = async (id) => {
-    const res = await axios.get(`${BASE_URL}/films/${id}`)
-
-    return res.data
+     return get(`/films/${id}`)
 }
 
 /**
  * Get All People  
  */
-const getPeople = async (page) => {
-    const res = await axios.get(`${BASE_URL}/people/?page=${page}`)
-
-    return res.data
+const getPeople = async (query, page) => {
+    console.log(`query: ${query} `)
+    return get(`/people/?search=&page=${page}`)
 }
+// const getPeople = async (query) => {
+//     return get(`/people/search?query=${query}}`)
+// }
 /**
  * Get a specific character  
  */
 const getCharacter = async (id) => {
-    const res = await axios.get(`${BASE_URL}/people/${id}`)
-
-    return res.data
+    return get(`/people/${id}`)
 }
 
-
-/**
- * Search query 
- */
-const get = async (endpoint) => {
-	const response = await axios.get(endpoint)
-	return response.data
-}
-
-export const search = async (query, page) => {
-    return get(`/?search=${query}&page=${page}"`)
-}
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default{
