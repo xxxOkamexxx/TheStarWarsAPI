@@ -9,6 +9,8 @@ import { getIdFromUrl } from '../helpers/index'
 
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
+
+import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 
@@ -20,72 +22,81 @@ const Peoplepage = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const searchInputRef = useRef()
 
-  const query = searchParams.get('query')
+  console.log('searchParams: ', searchParams)
 
-  const getAllPeople = async (query, page = 1) => {
+  const search = searchParams.get('search')
+  console.log('searchInput:', searchInput)
+
+  const getAllPeople = async (searchQuery, page = 1) => {
     setLoading(true)
 
-    const data = await StarWarsAPI.getPeople(query, page)                 
-    setPeople(data)
+    const data = await StarWarsAPI.getPeople(searchQuery, page)                 
+    
     console.log('data: ', data)
-    console.log('query, page: ',query ,':', page)
+    console.log('searchQuery, page: ',searchQuery ,':', page)
+
+    setPeople(data)
     setLoading(false)
   }
 
   const handleSubmit = async e => {
-		e.preventDefault()
-
+		e.preventDefault()    
+    
 		if (!searchInput.length) {
 			return
 		}
 
 		setPage(1)
-    setSearchParams({query: searchInput})
-		getAllPeople(searchInput)
+    setSearchParams({search: searchInput})
+		//getAllPeople(searchInput, 1)
 	}
 
 
   useEffect (() => {
-    if (!query) {
+    if (!search) {
 			setSearchInput('')
-      getAllPeople(query, page)
+      getAllPeople('', 1)
 			return
 		}
     
-    setSearchInput(query)
-    getAllPeople(query, page)
+    setSearchInput(search)
+    getAllPeople(search, page)
 
-  },[query, page])
+  },[search, page])
 
-  console.log('searchParams: ', searchParams)
-  console.log('query: ',query )
-  console.log('people: ', people)
-
+  console.log('search: ',search)
 
   return (
     <>
        <div className='d-flex flex-column align-items-center'>
         <h2 className='title'>People</h2>
         
-        <InputGroup onSubmit={handleSubmit} className="mb-3" style={{width:'70vw'}}>
-          <FormControl
-              onChange={e => setSearchInput(e.target.value)}
-              placeholder="Search..."
-              ref={searchInputRef}
-              required
-              type="text"
-              value={searchInput}
-          />
-          <Button
-            disabled={!searchInput.length} 
-            className='button'
-          >
-             Search
-          </Button>
-        </InputGroup>
+        <Form onSubmit={handleSubmit} className="mb-3" style={{width:'70vw'}}>
+
+          <InputGroup >
+            <FormControl
+                onChange={e => setSearchInput(e.target.value)}
+                placeholder="Search..."
+                ref={searchInputRef}
+                required
+                type="text"
+                value={searchInput}
+            />
+            <Button
+              disabled={!searchInput.length} 
+              className='button'
+            >
+              Search
+            </Button>
+          </InputGroup>
+
+        </Form>
+        
 
         
         {loading && (<div className="mt-4">Loading...</div>)}
+
+        <p>Showing {people.count} search results for {search}...</p>
        
         {people.results && (
           <div className='d-flex flex-column gap-3'>

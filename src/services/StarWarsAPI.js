@@ -28,9 +28,9 @@ const getFilms = async () => {
 /**
  * Get All People  
  */
-const getPeople = async (query, page) => {
-    console.log(`query: ${query} `)
-    return get(`/people/?search=&page=${page}`)
+const getPeople = async (search, page) => {
+    //console.log(`query in StarWarsAPI : ${query} `)
+    return get(`/people/?search=${search}&page=${page}`)
 }
 // const getPeople = async (query) => {
 //     return get(`/people/search?query=${query}}`)
