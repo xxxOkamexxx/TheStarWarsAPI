@@ -19,28 +19,30 @@ const Peoplepage = () => {
   const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(1)
   const [searchInput, setSearchInput] = useState('')
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams('')
   const searchInputRef = useRef()
 
-  console.log('searchParams: ', searchParams)
 
   const search = searchParams.get('search')
+  
+  console.log('searchParams: ', searchParams)
   console.log('searchInput:', searchInput)
 
-  const getAllPeople = async (searchQuery, page = 1) => {
+  const getAllPeople = async (searchQuery = "", page = 1) => {
     setLoading(true)
+    setPeople('')
 
     const data = await StarWarsAPI.getPeople(searchQuery, page)                 
     
-    console.log('data: ', data)
-    console.log('searchQuery, page: ',searchQuery ,':', page)
+    //console.log('data: ', data)
+    //console.log('searchQuery, page: ',searchQuery ,':', page)
 
     setPeople(data)
     setLoading(false)
   }
 
   const handleSubmit = async e => {
-		e.preventDefault()    
+		e.preventDefault()  
     
 		if (!searchInput.length) {
 			return
@@ -50,7 +52,6 @@ const Peoplepage = () => {
     setSearchParams({search: searchInput})
 		//getAllPeople(searchInput, 1)
 	}
-
 
   useEffect (() => {
     if (!search) {
@@ -64,7 +65,15 @@ const Peoplepage = () => {
 
   },[search, page])
 
-  console.log('search: ',search)
+  //console.log('search: ',search)
+
+/**
+ * Check
+ * 1. From Navi-menu 'People' ---> show Default results. OK
+ * 2. Use Search, type text and submit ---> show Search results. OK
+ * 3. Delete the text and do empty the form. ---> Default results are displayed. NG❌ -----Old search results and old URL remain.
+ */
+
 
   return (
     <>
@@ -83,23 +92,28 @@ const Peoplepage = () => {
                 value={searchInput}
             />
             <Button
+              type='submit'
               disabled={!searchInput.length} 
               className='button'
             >
               Search
             </Button>
           </InputGroup>
+            
+            {searchInput && (
+              <p className='text-secondary'>
+                Showing {people.count} search results for "{search}"...
+              </p>
+            )}
 
         </Form>
         
-
-        
         {loading && (<div className="mt-4">Loading...</div>)}
-
-        <p>Showing {people.count} search results for {search}...</p>
        
         {people.results && (
           <div className='d-flex flex-column gap-3'>
+            
+
             {people && people.results.filter(hits => {
               if(searchInput == ""){
                 return hits
