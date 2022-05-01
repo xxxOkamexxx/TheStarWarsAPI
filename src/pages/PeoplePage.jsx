@@ -67,13 +67,6 @@ const Peoplepage = () => {
 
   //console.log('search: ',search)
 
-/**
- * Check
- * 1. From Navi-menu 'People' ---> show Default results. OK
- * 2. Use Search, type text and submit ---> show Search results. OK
- * 3. Delete the text and do empty the form. ---> Default results are displayed. NG❌ -----Old search results and old URL remain.
- */
-
 
   return (
     <>
