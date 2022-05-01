@@ -42,7 +42,10 @@ function CharacterPage() {
               <p>Skin color: {character.skin_color}</p>
 
               <p>Films:</p>              
-              {character.films && character.films.map((film, key) => 
+
+
+              {character.films && character.films.map((film, key )=> 
+
                 <ListGroup.Item
                   key={key}
                   as={Link}
