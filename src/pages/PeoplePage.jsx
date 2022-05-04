@@ -1,11 +1,12 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable eqeqeq */
-import { useState, useEffect, useRef} from 'react'
+import { useState, useEffect, useRef, useContext} from 'react'
 import { Link } from 'react-router-dom'
 import { useSearchParams } from 'react-router-dom'
 
 import StarWarsAPI from '../services/StarWarsAPI'
 import { getIdFromUrl } from '../helpers/index'
+import { PageContext } from '../context/PageContext'
 
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
@@ -17,7 +18,7 @@ import FormControl from 'react-bootstrap/FormControl'
 const Peoplepage = () => {
   const [people, setPeople] = useState([])
   const [loading, setLoading] = useState(false)
-  const [page, setPage] = useState(1)
+  const {page, setPage} = useContext(PageContext)
   const [searchInput, setSearchInput] = useState('')
   const [searchParams, setSearchParams] = useSearchParams('')
   const searchInputRef = useRef()
@@ -25,17 +26,18 @@ const Peoplepage = () => {
 
   const search = searchParams.get('search')
   
-  console.log('searchParams: ', searchParams)
+  //console.log('searchParams: ', searchParams)
   console.log('searchInput:', searchInput)
 
   const getAllPeople = async (searchQuery = "", page = 1) => {
+    console.log('getPeople fire!')
     setLoading(true)
     setPeople('')
 
     const data = await StarWarsAPI.getPeople(searchQuery, page)                 
     
     //console.log('data: ', data)
-    //console.log('searchQuery, page: ',searchQuery ,':', page)
+    console.log('searchQuery, page: ',searchQuery ,':', page)
 
     setPeople(data)
     setLoading(false)
@@ -56,17 +58,20 @@ const Peoplepage = () => {
   useEffect (() => {
     if (!search) {
 			setSearchInput('')
-      getAllPeople('', 1)
+      getAllPeople('', page)
 			return
 		}
+
     
-    setSearchInput(search)
+    
+//setSearchInput(search)
     getAllPeople(search, page)
 
   },[search, page])
-
+  console.log('page', page)
   //console.log('search: ',search)
 
+  
 
   return (
     <>

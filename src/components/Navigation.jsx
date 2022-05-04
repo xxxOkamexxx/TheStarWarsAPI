@@ -1,9 +1,15 @@
+import { useContext } from 'react'
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import {Link, NavLink} from 'react-router-dom'
+import { PageContext } from '../context/PageContext'
 
 const Navigation = () => {
+
+    const {setPage} = useContext(PageContext)
+    //console.log('page-context', page)
+    
   return (
     
     <Navbar expand="md">
@@ -21,7 +27,7 @@ const Navigation = () => {
                     <Nav.Link as={NavLink} end to='/films'>
                         Films
                     </Nav.Link>
-                    <Nav.Link as={NavLink} end to='/people'>
+                    <Nav.Link as={NavLink} end to='/people' onClick={()=>setPage(1)}>
                         People
                     </Nav.Link>
                 </Nav>

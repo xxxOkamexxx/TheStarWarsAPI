@@ -13,24 +13,26 @@ import NotFound from './pages/NotFound'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.css'
 import './App.css';
+import PageContextProvider from './context/PageContext'
 
 
 function App() {
 
   return (
     <div className="App">
+      <PageContextProvider>
       <Navigation />
-      <Container className='py-3'>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/films" element={<FilmsPage />} />
-          <Route path="/films/:id" element={<EpisodePage />} />
-          <Route path="/people" element={<PeoplePage />} />
-          <Route path='/people/:id' element={<CharacterPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Container>
-      
+        <Container className='py-3'>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/films" element={<FilmsPage />} />
+            <Route path="/films/:id" element={<EpisodePage />} />
+            <Route path="/people" element={<PeoplePage />} />
+            <Route path='/people/:id' element={<CharacterPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Container>
+      </PageContextProvider>
     </div>
   );
 }

@@ -1,3 +1,10 @@
+/**
+ * Jag undrar om detta skulle vara ett "Context"
+ * Det är som om det bara är en funktion.
+ * Men jag vet inte hur jag ska kategorisera den här filen, 
+ * så lägg den i den här mappen.
+ */
+
 import { createContext, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
