@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 
 // Page component
 import Navigation from './components/Navigation'
+import PageContextProvider from './context/PageContext'
 import HomePage from './pages/HomePage'
 import FilmsPage from './pages/FilmsPage'
 import EpisodePage from './pages/EpisodePage'
@@ -13,7 +14,6 @@ import NotFound from './pages/NotFound'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.css'
 import './App.css';
-import PageContextProvider from './context/PageContext'
 
 
 function App() {
