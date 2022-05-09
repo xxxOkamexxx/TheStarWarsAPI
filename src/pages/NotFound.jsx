@@ -1,4 +1,4 @@
-import GoBackButton from '../context/GoBackButton'
+import GoBackButton from '../components/GoBackButton'
 
 const NotFound = () => {
 	

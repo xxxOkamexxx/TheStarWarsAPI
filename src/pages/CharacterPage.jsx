@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 
 import StarWarsAPI from '../services/StarWarsAPI'
 import { getIdFromUrl } from '../helpers/index'
-import GoBackButton from '../context/GoBackButton'
+import GoBackButton from '../components/GoBackButton'
 
 import ListGroup from 'react-bootstrap/ListGroup'
 
