@@ -7,6 +7,7 @@ import { useSearchParams } from 'react-router-dom'
 import StarWarsAPI from '../services/StarWarsAPI'
 import { getIdFromUrl } from '../helpers/index'
 import { PageContext } from '../context/PageContext'
+import Loader from '../components/Loader'
 
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
@@ -105,7 +106,12 @@ const Peoplepage = () => {
 
         </Form>
         
-        {loading && (<div className="mt-4">Loading...</div>)}
+        {loading && (
+          <>
+            <Loader />
+            <div className="mt-4">Loading...</div>
+          </>
+        )}
        
         {people.results && (
           <div className='d-flex flex-column gap-3'>

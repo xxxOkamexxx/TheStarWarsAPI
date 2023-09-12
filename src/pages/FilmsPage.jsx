@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
+import Loader from '../components/Loader'
 
 import StarWarsAPI from '../services/StarWarsAPI'
 import { getIdFromUrl } from '../helpers/index'
@@ -33,7 +34,12 @@ const FilmsPage = () => {
       <div className='d-flex flex-column align-items-center'>
         <h2 className='title'>Films</h2>
 
-        {loading && (<div className="mt-4">Loading...</div>)}
+        {loading && (
+          <>
+            <Loader />
+            <div className="mt-4">Loading...</div>
+          </>
+        )}
 
         {films.results && (
           <div className='d-flex flex-column gap-3'>
