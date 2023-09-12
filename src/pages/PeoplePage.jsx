@@ -121,16 +121,16 @@ const Peoplepage = () => {
                 
                 <Card
                   style={{width:'70vw'}}     
-                  className="d-flex flex-row justify-content-between"
+                  className="d-flex flex-md-row flex-sm-column justify-content-between"
                   key={key}
                 >
-                <Card.Body className='col-4'>
+                <Card.Body className='col-md-4'>
                   <Card.Title className='list-title'>
                     {person.name}
                   </Card.Title>
                 </Card.Body>
 
-                <Card.Body className='col-4'>
+                <Card.Body className='col-md-4'>
                   <Card.Text>Gender: {person.gender}</Card.Text>
                   <Card.Text>Born: {person.birth_year}</Card.Text>
                 </Card.Body>  

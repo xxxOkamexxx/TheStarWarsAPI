@@ -40,10 +40,10 @@ const FilmsPage = () => {
           {films.results && films.results.map((film, key) => 
             <Card 
               style={{width:'70vw'}} 
-              className="d-flex flex-row justify-content-between" 
+              className="d-flex flex-md-row flex-sm-column justify-content-between"
               key={key}                
             >
-              <Card.Body className='col-4'>
+              <Card.Body className='col-md-4'>
                 <Card.Title className='list-title'>
                   {film.title}
                 </Card.Title>
@@ -52,7 +52,7 @@ const FilmsPage = () => {
                 </Card.Subtitle>
               </Card.Body> 
 
-              <Card.Body className='col-4'> 
+              <Card.Body className='col-md-4'> 
                 <Card.Text>
                   <strong>Released:</strong>{film.release_date}
                 </Card.Text>
